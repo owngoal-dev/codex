@@ -1,7 +1,7 @@
 # Tag vX.Y.Z → build the roothide and rootless packages and attach both, plus
 # their digests, to a GitHub Release.
 #
-# The release is what OwnGoalPackages scans. It looks for the newest release
+# The release is what owngoal-packages scans. It looks for the newest release
 # that is neither a draft nor a prerelease and whose tag carries no
 # alpha/beta/rc/preview/dev/nightly marker, then picks the asset whose name ends
 # in the architecture it wants and verifies it against SHA256SUMS.

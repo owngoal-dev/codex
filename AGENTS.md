@@ -126,7 +126,7 @@ build/                       everything generated; not source
 Test by installing, never by copying a binary onto `/var/mobile`. A copied
 binary runs with its entitlements ignored (trustcache never saw it).
 
-## The OwnGoalPackages contract
+## The owngoal-packages contract
 
 Same as kk: a non-draft, non-prerelease tag `vX.Y.Z`; assets whose names end
 in `iphoneos-arm64.deb` / `iphoneos-arm64e.deb`; a `SHA256SUMS` of bare names.
@@ -138,7 +138,7 @@ apply, then commit and tag `vX.Y.Z` as `bot <bot@owngoal.dev>` and dispatch
 pushed with the workflow's own token never fires a push-triggered workflow,
 and `workflow_dispatch` is the documented exception. A packaging respin
 `X.Y.Z-N` already tracks upstream `X.Y.Z`, so the job advances on a new
-stable version rather than a different same-version SHA. OwnGoalPackages
+stable version rather than a different same-version SHA. owngoal-packages
 fetches the release at 04:00 UTC.
 
 ## RootHide signing and launcher checks

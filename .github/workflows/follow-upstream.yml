@@ -1,13 +1,13 @@
 # Once a day, pin to the newest stable openai/codex rust-vX.Y.Z release.
 # If the pin moves and patches/ still apply, commit and tag vX.Y.Z.
 # release.yml, dispatched on that tag, builds and publishes it;
-# OwnGoalPackages picks it up at 04:00 UTC.
+# owngoal-packages picks it up at 04:00 UTC.
 
 name: Follow upstream
 
 on:
   schedule:
-    # Daily 00:00 UTC, ahead of OwnGoalPackages' 04:00 UTC fetch.
+    # Daily 00:00 UTC, ahead of owngoal-packages' 04:00 UTC fetch.
     - cron: "0 0 * * *"
   workflow_dispatch:
 

@@ -5,7 +5,7 @@
 #
 # Does not build debs or create a GitHub release. The scheduled workflow
 # commits the pin and tags vX.Y.Z; release.yml turns that tag into packages.
-# OwnGoalPackages picks up the newest non-preview release on its next run.
+# owngoal-packages picks up the newest non-preview release on its next run.
 #
 #   scripts/follow-upstream.sh           # rewrite configuration/ if newer
 #   scripts/follow-upstream.sh --check   # exit 0 if already current
