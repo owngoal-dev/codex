@@ -107,7 +107,7 @@ done
 git -C "$work_dir" reset --quiet --hard "$ref"
 git -C "$work_dir" clean -qfdx
 for patch_file in "${patches[@]}"; do
-    git -C "$work_dir" apply --whitespace=nowarn "$patch_file" || {
+    python3 "$repository_root/scripts/apply-patch.py" "$work_dir" "$patch_file" || {
         echo "error: rewritten $(basename "$patch_file") does not apply cleanly" >&2
         exit 65
     }

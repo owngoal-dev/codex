@@ -1,0 +1,29 @@
+{
+  "class": "DepictionTabView",
+  "minVersion": "0.4",
+  "tabs": [
+    {
+      "class": "DepictionStackView",
+      "tabname": "Details",
+      "views": [
+        {
+          "class": "DepictionSubheaderView",
+          "title": "Code from Your Terminal",
+          "useBoldText": true
+        },
+        {
+          "class": "DepictionHeaderView",
+          "title": "Description"
+        },
+        {
+          "class": "DepictionSeparatorView"
+        },
+        {
+          "class": "DepictionMarkdownView",
+          "markdown": "Run `codex` in a terminal to ask for code changes in plain language. Codex reads files, edits code, and runs commands. Sign in with your ChatGPT account or an API key.\n\n## Compatibility\n\nRequires jailbroken iOS 15 or later and a roothide or rootless bootstrap that provides a shell. Choose `iphoneos-arm64e` for roothide or `iphoneos-arm64` for rootless. Both packages contain an arm64 binary.\n\nInstall from the [OwnGoal Studio repository](https://apt.owngoal.dev/) or install the matching package from [Releases](https://github.com/owngoal-dev/codex/releases) with `dpkg -i`. Run `dpkg --print-architecture` if you are unsure which bootstrap layout you use.\n\n[View Source](https://github.com/owngoal-dev/codex)",
+          "useSpacing": true
+        }
+      ]
+    }
+  ]
+}

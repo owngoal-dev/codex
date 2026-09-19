@@ -1,15 +1,9 @@
 diff --git a/codex-rs/Cargo.toml b/codex-rs/Cargo.toml
 --- a/codex-rs/Cargo.toml
 +++ b/codex-rs/Cargo.toml
-@@ -292,7 +292,7 @@ mcp_test_support = { path = "mcp-server/tests/common" }
- age = "0.11.1"
- ansi-to-tui = "8.0.1"
- anyhow = "1"
+@@ -292,1 +292,1 @@
 -arboard = { version = "3", features = ["wayland-data-control"] }
 +arboard = { version = "3" }
- arc-swap = "1.9.0"
- assert_cmd = "2"
- assert_matches = "1.5.0"
 diff --git a/codex-rs/tui/Cargo.toml b/codex-rs/tui/Cargo.toml
 --- a/codex-rs/tui/Cargo.toml
 +++ b/codex-rs/tui/Cargo.toml

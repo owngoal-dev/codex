@@ -52,6 +52,11 @@ echo "  toolchain: $RUST_TOOLCHAIN" >&2
 command -v rustup >/dev/null || { echo "error: rustup is not installed" >&2; exit 69; }
 rustup toolchain install "$RUST_TOOLCHAIN" --profile minimal >&2
 rustup target add "$rust_target" --toolchain "$RUST_TOOLCHAIN" >&2
+# Homebrew can provide standalone cargo/rustc ahead of rustup's proxies.
+# Cargo's child compiler must use the same toolchain that owns the iOS stdlib.
+toolchain_rustc="$(rustup which --toolchain "$RUST_TOOLCHAIN" rustc)"
+toolchain_bin="$(dirname "$toolchain_rustc")"
+export PATH="$toolchain_bin:$PATH"
 
 export SDKROOT="$sdk_path"
 export IPHONEOS_DEPLOYMENT_TARGET="$MIN_IOS"
@@ -88,7 +93,7 @@ source_v8_version="$(sed -n 's/^version = "\([^"]*\)"/\1/p' "$rusty_v8_root/Carg
 # The vtool check below is the backstop; this is the front.
 (
     cd "$cargo_root"
-    cargo +"$RUST_TOOLCHAIN" build \
+    rustup run "$RUST_TOOLCHAIN" cargo build \
         --release \
         --target "$rust_target" \
         --package "$CARGO_PACKAGE" \
@@ -114,7 +119,7 @@ trap restore_cargo_lock EXIT
     export GN_ARGS="ios_deployment_target=\"$MIN_IOS\""
     export LIBCLANG_PATH="$libclang_path"
     unset CLANG_BASE_PATH RUSTY_V8_ARCHIVE RUSTY_V8_MIRROR V8_FORCE_DEBUG
-    cargo +"$RUST_TOOLCHAIN" build \
+    rustup run "$RUST_TOOLCHAIN" cargo build \
         --release \
         --target "$rust_target" \
         --package "$CODE_MODE_HOST_PACKAGE" \

@@ -25,7 +25,9 @@ Verify your download against `SHA256SUMS`.
 
 **Full changelog**: https://github.com/owngoal-dev/codex/commits/@TAG@
 
-This packaging revision updates RootHide compatibility checks and signing.
+This build follows the newest stable Codex release and includes native package
+details with release notes in Sileo. Dependency patches tolerate unrelated
+upstream manifest additions.
 CLI startup passes bootstrap paths to payloads that use the physical filesystem;
 RootHide virtual-filesystem utilities retain their official import rewriting.
 RootHide device validation is pending; a successful build is not a claim that

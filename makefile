@@ -111,6 +111,7 @@ check:
 	@for patch in "$(ROOT_DIR)"/patches/*.patch; do \
 		test -s "$$patch" || { echo "error: $$patch is empty" >&2; exit 65; }; \
 	done
+	@python3 "$(ROOT_DIR)/scripts/test-patches.py"
 	@echo "==> packaging inputs"
 	@for input in packaging/DEBIAN/control packaging/codex.entitlements \
 		packaging/codex.launcher.c packaging/release-notes.md \
@@ -119,6 +120,8 @@ check:
 	done
 	@plutil -lint "$(ROOT_DIR)/packaging/codex.entitlements"
 	@"$(ROOT_DIR)/scripts/release-notes.sh" "v$(PACKAGE_VERSION)" >/dev/null
+	@echo "==> native depiction"
+	@python3 -m json.tool "$(ROOT_DIR)/docs/depiction.json" >/dev/null
 	@echo "==> skill policy"
 	@bash -n "$(ROOT_DIR)/scripts/check-skill-policy.sh"
 	@"$(ROOT_DIR)/scripts/check-skill-policy.sh" --self-test \

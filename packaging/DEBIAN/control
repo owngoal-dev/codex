@@ -12,3 +12,5 @@ Section: Utilities
 Priority: optional
 Depends: firmware (>= @MIN_IOS@), uikittools, ca-certificates
 Installed-Size: @INSTALLED_SIZE@
+Depiction: https://owngoal-dev.github.io/codex/
+SileoDepiction: https://owngoal-dev.github.io/codex/depiction.json

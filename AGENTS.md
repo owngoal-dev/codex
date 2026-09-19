@@ -114,7 +114,11 @@ build/                       everything generated; not source
   `patches/`, then move the pin (`scripts/follow-upstream.sh`) and `make check`.
   Upstream trees newer than 0.152 commit the real workspace version instead of
   the `0.0.0` placeholder; `prepare-source.sh` accepts either and refuses any
-  other value as a pin/version mismatch.
+  other value as a pin/version mismatch. Dependency-only replacements may use
+  zero-context hunks to avoid coupling to neighboring crate versions; preparation
+  uses `scripts/apply-patch.py` to require one exact match before
+  `git apply --unidiff-zero`. `make check` verifies relocation and rejects
+  incompatible or ambiguous dependency changes.
 - `make build` — cross-compile and verify the Mach-O is iOS
 - `make debs` — both packages plus `SHA256SUMS`; what CI releases. On the
   macOS runner this takes 2 to 4 hours because V8 is built from source; the
