@@ -81,6 +81,27 @@ for patch in "${patches[@]}"; do
     fi
 done
 
+# A patch can apply cleanly and still break a manifest, e.g. by adding a
+# target table that upstream has since added too. Cargo would only say so at
+# build time, after Follow upstream has already tagged the release.
+python3 - "$work_dir" "${patches[@]}" <<'PY'
+from pathlib import Path
+import re
+import sys
+import tomllib
+work_dir = Path(sys.argv[1])
+manifests = {
+    name
+    for patch in sys.argv[2:]
+    for name in re.findall(r"^\+\+\+ b/(\S*\.toml)$", Path(patch).read_text(), re.M)
+}
+for name in sorted(manifests):
+    try:
+        tomllib.loads((work_dir / name).read_text())
+    except tomllib.TOMLDecodeError as error:
+        raise SystemExit(f"error: patched {name} is not valid TOML: {error}")
+PY
+
 # Older upstream trees carry a 0.0.0 placeholder that official releases
 # rewrite at tag time; newer ones commit the real version. Either way
 # `codex --version` must match the package, and any other value means the

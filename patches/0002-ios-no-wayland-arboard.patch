@@ -1,15 +1,18 @@
 diff --git a/codex-rs/Cargo.toml b/codex-rs/Cargo.toml
 --- a/codex-rs/Cargo.toml
 +++ b/codex-rs/Cargo.toml
-@@ -292,1 +292,1 @@
+@@ -320,1 +320,1 @@
 -arboard = { version = "3", features = ["wayland-data-control"] }
 +arboard = { version = "3" }
 diff --git a/codex-rs/tui/Cargo.toml b/codex-rs/tui/Cargo.toml
 --- a/codex-rs/tui/Cargo.toml
 +++ b/codex-rs/tui/Cargo.toml
-@@ -143,10 +143,13 @@ windows-sys = { version = "0.52", features = [
- winsplit = "0.1"
- 
+@@ -147,3 +147,4 @@ objc2-foundation = { version = "0.3.2", default-features = false, features = ["s
+ [target.'cfg(target_os = "linux")'.dependencies]
+ # Keep the same executor features as the credential store, which also uses zbus.
+ zbus = "4.4.0"
++arboard = { workspace = true, features = ["wayland-data-control"] }
+@@ -168,4 +169,5 @@ winsplit = "0.1"
  # Clipboard support via `arboard` is not available on Android/Termux.
 -# Only include it for non-Android targets so the crate builds on Android.
 -[target.'cfg(not(target_os = "android"))'.dependencies]
@@ -17,9 +20,3 @@ diff --git a/codex-rs/tui/Cargo.toml b/codex-rs/tui/Cargo.toml
 +# Wayland data-control backend is Linux-only and does not compile for iOS.
 +[target.'cfg(not(any(target_os = "android", target_os = "linux")))'.dependencies]
  arboard = { workspace = true }
- 
-+[target.'cfg(target_os = "linux")'.dependencies]
-+arboard = { workspace = true, features = ["wayland-data-control"] }
- 
- [dev-dependencies]
- app_test_support = { workspace = true }
