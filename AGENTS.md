@@ -1,7 +1,7 @@
 # codex — Agent Notes
 
 [OpenAI Codex](https://github.com/openai/codex) — the terminal coding
-agent — built for jailbroken iOS 15+ and installed as `codex`, for both
+agent — built for iOS 15+ on custom firmware and installed as `codex`, for both
 **roothide** and **rootless** bootstraps.
 
 This repository holds **no application source**. It fetches openai/codex at a
@@ -81,7 +81,7 @@ the physical-path launcher contract together. Consequences:
   layout. Do not assume RootHide exposes `/var/jb`; ask
   `dpkg --print-architecture` when the installed layout matters.
 
-Do not add `/var/jb` to patched source as a universal jailbreak prefix. It is
+Do not add `/var/jb` to patched source as a universal bootstrap prefix. It is
 one rootless candidate in a probe list; RootHide discovery must use the
 per-Mach-O-directory `.jbroot` contract rather than guessing its random path.
 

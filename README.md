@@ -1,7 +1,7 @@
 # codex
 
 [OpenAI Codex](https://github.com/openai/codex) — the terminal coding agent —
-built for jailbroken iOS and installed as `codex`. One arm64 build, packaged
+built for iOS on custom firmware and installed as `codex`. One arm64 build, packaged
 for both **roothide** and **rootless** bootstraps.
 
 ## Install

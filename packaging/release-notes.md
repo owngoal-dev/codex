@@ -1,4 +1,4 @@
-[OpenAI Codex](https://github.com/openai/codex) — the terminal coding agent — built for jailbroken iOS and installed as `codex`.
+[OpenAI Codex](https://github.com/openai/codex) — the terminal coding agent — built for iOS on custom firmware and installed as `codex`.
 
 ## Which one do I download?
 
@@ -19,7 +19,7 @@ Run `codex` in a terminal on device. Authenticate with ChatGPT or an API key. Th
 
 ## About this build
 
-Upstream [`openai/codex@@UPSTREAM_SHORT@`](https://github.com/openai/codex/commit/@UPSTREAM_REF@), plus the patches that port it to a jailbroken iOS userspace. The binary is a Rust executable: it is **not** linked with libvroot, so it has to probe for the bootstrap's shell instead of trusting `/bin/sh`. See [`patches/`](https://github.com/owngoal-dev/codex/tree/@TAG@/patches).
+Upstream [`openai/codex@@UPSTREAM_SHORT@`](https://github.com/openai/codex/commit/@UPSTREAM_REF@), plus the patches that port it to an iOS userspace on custom firmware. The binary is a Rust executable: it is **not** linked with libvroot, so it has to probe for the bootstrap's shell instead of trusting `/bin/sh`. See [`patches/`](https://github.com/owngoal-dev/codex/tree/@TAG@/patches).
 
 Verify your download against `SHA256SUMS`.
 
