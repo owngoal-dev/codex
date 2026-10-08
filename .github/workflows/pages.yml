@@ -50,7 +50,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: owngoal-dev/owngoal-packages
-          ref: 4dab9b352c6b3e94c7b5efa96bd60fa94e69225a
+          ref: ef579aeebc7fe0ca1ba1165a1749665237c3a258
           path: .depiction-tools
           sparse-checkout: scripts/update-depiction-changelogs.py
           sparse-checkout-cone-mode: false
