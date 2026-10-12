@@ -17,6 +17,11 @@ Requires **iOS @MIN_IOS_MAJOR@ or later** and a bootstrap that provides a shell.
 
 Run `codex` in a terminal on device. Authenticate with ChatGPT or an API key. The browser login uses `uiopen`. Code Mode uses the packaged native `codex-code-mode-host` sidecar.
 
+The iOS launcher adds `--no-daemon` by default to prevent startup from creating
+the shared background daemon, which can conflict with existing processes on
+iOS. Interactive sessions run without that daemon; features requiring the shared
+daemon are unavailable in this mode. You do not need to add the option yourself.
+
 ## About this build
 
 Upstream [`openai/codex@@UPSTREAM_SHORT@`](https://github.com/openai/codex/commit/@UPSTREAM_REF@), plus the patches that port it to an iOS userspace on custom firmware. The binary is a Rust executable: it is **not** linked with libvroot, so it has to probe for the bootstrap's shell instead of trusting `/bin/sh`. See [`patches/`](https://github.com/owngoal-dev/codex/tree/@TAG@/patches).

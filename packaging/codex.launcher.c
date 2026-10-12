@@ -66,7 +66,6 @@ static void configure_environment(const char *prefix) {
 }
 
 int main(int argc, char **argv) {
-    (void)argc;
     const char *prefix = bootstrap_prefix();
     if (!prefix) {
         fprintf(stderr, "%s: cannot resolve the jailbreak bootstrap with libroot\n", OG_PROGRAM);
@@ -75,9 +74,25 @@ int main(int argc, char **argv) {
     configure_environment(prefix);
     char executable[PATH_MAX];
     if (!join_path(executable, prefix, "/usr/libexec/" OG_PROGRAM "/" OG_PROGRAM)) return 127;
-    argv[0] = executable;
-    execv(executable, argv);
+    /* iOS cannot safely share the upstream background daemon. Keep the
+       option before user arguments, including any end-of-options marker. */
+    int has_no_daemon = 0;
+    for (int index = 1; index < argc; index++) {
+        if (strcmp(argv[index], "--") == 0) break;
+        if (strcmp(argv[index], "--no-daemon") == 0) has_no_daemon = 1;
+    }
+    char **arguments = calloc((size_t)argc + 2, sizeof(*arguments));
+    if (!arguments) {
+        fprintf(stderr, "%s: cannot allocate launch arguments\n", OG_PROGRAM);
+        return 126;
+    }
+    arguments[0] = executable;
+    int next = 1;
+    if (!has_no_daemon) arguments[next++] = "--no-daemon";
+    for (int index = 1; index < argc; index++) arguments[next++] = argv[index];
+    execv(executable, arguments);
     int error = errno;
+    free(arguments);
     fprintf(stderr, "%s: cannot execute %s: %s\n", OG_PROGRAM, executable, strerror(error));
     return error == ENOENT ? 127 : 126;
 }
